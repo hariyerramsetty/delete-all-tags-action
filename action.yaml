@@ -17,7 +17,7 @@ runs:
     - name: Install dependencies
       shell: bash
       run: |
-        cd cmd && go get .
+        ls
 
     - name: Delete All Tags
       shell: bash
