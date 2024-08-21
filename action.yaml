@@ -15,44 +15,13 @@ runs:
     - name: Install dependencies
       run: go get .
 
-    - name: Get Tags
-      run: go run getTags.go
-      id: get_tags
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      
-    
-    - name: Get Tags
-      uses: octokit/request-action@v2.1.7
-      id: get_tags
-      with:
-        route: GET /repos/${{ github.repository }}/tags
+    - name: Delete All Tags
+      run: go run cmd/delete_all_tags.go
+      id: delete_all_tags
       env:
         GITHUB_TOKEN: ${{ github.token }}
-    - name: Get Releases
-      uses: octokit/request-action@v2.1.7
-      id: get_releases
-      with:
-        route: GET /repos/${{ github.repository }}/releases
-      env:
-        GITHUB_TOKEN: ${{ github.token }}
-    - name: Find Tags with Releases
-      id: find_tags_with_release
-      shell: bash
-      run: |
-        TAGS_WITH_RELEASES=$(jq -c -r .[].tag_name  <<< '${{ steps.get_releases.outputs.data }}')
-        echo "VALUES<<EOF"$'\n'"$TAGS_WITH_RELEASES"$'\n'EOF >> $GITHUB_OUTPUT
-    - name: Delete free Tags
-      shell: bash
-      run: |
-        tags_with_release=$(jq -c -r .[].tag_name  <<< '${{ steps.get_releases.outputs.data }}')
-        jq -c -r .[].name  <<< '${{ steps.get_tags.outputs.data }}' | while read -r tag; 
-        do 
-          if [[ "$tags_with_release" == *"$tag"* ]]; then
-            echo "$tag has a release"
-          else
-            echo "$tag is free"
-            gh api --method DELETE -H "Accept: application/vnd.github+json" "/repos/${{ github.repository }}/git/refs/tags/$tag"
-          fi
-        done
-        
+        GRAPHQL_ENDPOINT: ${{ github.graphql_url }}
+        OWNER: ${{ github.repository_owner }}
+        REPOSITORY: {{ github.repository }}
+        ENTERPRISE_URL: ${{ gitub.server_url }}
+
