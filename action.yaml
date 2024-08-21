@@ -24,6 +24,6 @@ runs:
         GITHUB_TOKEN: ${{ github.token }}
         GRAPHQL_ENDPOINT: ${{ github.graphql_url }}
         OWNER: ${{ github.repository_owner }}
-        REPOSITORY: {{ github.repository }}
-        ENTERPRISE_URL: ${{ gitub.server_url }}
+        REPOSITORY: ${{ github.repository }}
+        ENTERPRISE_URL: ${{ github.server_url }}
 
