@@ -16,11 +16,12 @@ runs:
 
     - name: Install dependencies
       shell: bash
-      run: go get .
+      run: |
+        cd cmd && go get .
 
     - name: Delete All Tags
       shell: bash
-      run: go run cmd/delete_all_tags.go
+      run: go run delete_all_tags.go
       id: delete_all_tags
       env:
         GITHUB_TOKEN: ${{ github.token }}
