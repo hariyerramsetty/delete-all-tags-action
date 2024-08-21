@@ -13,9 +13,11 @@ runs:
       uses: actions/setup-go@v5.0.2
 
     - name: Install dependencies
+      shell: bash
       run: go get .
 
     - name: Delete All Tags
+      shell: bash
       run: go run cmd/delete_all_tags.go
       id: delete_all_tags
       env:
