@@ -20,7 +20,7 @@ runs:
 
     - name: Install dependencies
       shell: bash
-      run: go get ${{ github.action_path }}/.
+      run: go install github.com/hariyerramsetty/delete-all-tags-action@latest
 
     - name: Delete All Tags
       shell: bash
