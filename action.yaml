@@ -12,8 +12,8 @@ runs:
     - name: Setup Go environment
       uses: actions/setup-go@v5.0.2
       with:
-        go-version-file: 'go.mod'
-        cache-dependency-path: go.sum
+        go-version-file: ${{ github.action_path }}/go.mod
+        cache-dependency-path: ${{ github.action_path}}/go.sum
     
     - name: Enable Go modules
       shell: bash
