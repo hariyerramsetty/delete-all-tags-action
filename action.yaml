@@ -18,6 +18,10 @@ runs:
       shell: bash
       run: go env -w GO111MODULE=auto
 
+    - name: Install dependencies
+      shell: bash
+      run: go get ${{ github.action_path }}/.
+
     - name: Delete All Tags
       shell: bash
       run: go run ${{ github.action_path}}/delete_all_tags.go
