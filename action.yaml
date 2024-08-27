@@ -14,14 +14,12 @@ runs:
       with:
         go-version: '1.23.0'
 
-    - name: Install dependencies
-      shell: bash
-      run: |
-        cd ${{ github.action_path }}/cmd && go get .
-
     - name: Delete All Tags
       shell: bash
-      run: go run ${{ github.action_path}}/cmd/delete_all_tags.go
+      run: |
+        cd ${{ github.action_path }}
+        go get .
+        go run delete_all_tags.go
       id: delete_all_tags
       env:
         GITHUB_TOKEN: ${{ github.token }}
