@@ -17,9 +17,8 @@ runs:
     - name: Delete All Tags
       shell: bash
       run: |
-        cd ${{ github.action_path }}
         go install github.com/hariyerramsetty/delete-all-tags-action@latest
-        go run delete_all_tags.go
+        go run ${{ github.action_path }}/delete_all_tags.go
       id: delete_all_tags
       env:
         GITHUB_TOKEN: ${{ github.token }}
