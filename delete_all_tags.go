@@ -1,4 +1,4 @@
-package github.com/hariyerramsetty/delete-all-tags-action
+package main
 
 import (
 	"context"
