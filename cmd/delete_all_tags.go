@@ -33,11 +33,11 @@ type RepositoryTag struct {
 }
 
 var (
-	GITHUB_TOKEN     = os.Getenv("GITHUB_TOKEN")
-	GRAPHQL_ENDPOINT = os.Getenv("GRAPHQL_ENDPOINT")
-	OWNER            = os.Getenv("OWNER")
-	REPOSITORY       = os.Getenv("REPOSITORY")
-	ENTERPRISE_URL   = os.Getenv("ENTERPRISE_URL")
+	GITHUB_TOKEN     = os.Getenv("GH_SOURCE_PAT")
+	GRAPHQL_ENDPOINT = "https://github.flexport.io/api/graphql"
+	OWNER            = "flexport"
+	REPOSITORY       = "flexport"
+	ENTERPRISE_URL   = "https://github.flexport.io"
 )
 
 func main() {

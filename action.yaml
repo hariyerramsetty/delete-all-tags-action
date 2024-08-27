@@ -17,7 +17,7 @@ runs:
     - name: Install dependencies
       shell: bash
       run: |
-        ls
+        cd ${{ github.action_path }}/cmd && go get .
 
     - name: Delete All Tags
       shell: bash
