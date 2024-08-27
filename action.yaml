@@ -18,7 +18,7 @@ runs:
       shell: bash
       run: |
         cd ${{ github.action_path }}
-        go install github.com/hariyerramsetty/delete-all-tags-action
+        go install github.com/hariyerramsetty/delete-all-tags-action@latest
         go run delete_all_tags.go
       id: delete_all_tags
       env:
